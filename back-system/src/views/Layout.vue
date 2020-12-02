@@ -4,7 +4,7 @@
       <el-header class="layout-header d-flex align-items-center">
         <!-- logo   -->
         <a class="h5 text-light mb-0 mr-auto">UNI-ADMIN</a>
-        <!-- menu菜单   -->
+        <!-- 头部导航   -->
         <el-menu
           :default-active="navBar.active|numString"
           mode="horizontal"
@@ -30,6 +30,7 @@
       </el-header>
       <el-container class="layout-main">
         <el-aside width="200px">
+          <!-- 侧边栏导航 -->
           <el-menu :default-active="slideMenuActive" @select="slideSelect" active-text-color="teal">
             <el-menu-item :index="index|numString" v-for="(item,index) in slideMenus" :key="index">
               <i :class="item.icon"></i>
@@ -38,7 +39,7 @@
           </el-menu>
         </el-aside>
         <el-main>
-          <li v-for="(item, index) in 100" :key="index">{{ index }}</li>
+           <router-view></router-view>
         </el-main>
       </el-container>
     </el-container>
@@ -62,14 +63,17 @@ export default {
               {
                 name: "后台首页",
                 icon: "el-icon-s-home",
+                pathName : "/index"
               },
               {
                 name: "相册管理",
                 icon: "el-icon-picture",
+                pathName : "/image"
               },
               {
                 name: "商品列表",
                 icon: "el-icon-s-claim",
+                pathName : "/shop/goods/list"
               },
             ],
           },
@@ -171,13 +175,14 @@ export default {
             return this.navBar.tree[this.navBar.active].subActive || "0" 
           },
           set(val){
-            this.navBar.list[this.navBar.active].subActive = val;
+            this.navBar.tree[this.navBar.active].subActive = val;
           }
       }
   },
   methods: {
     handleSelect(key, keyPath) {
       this.navBar.active = key;
+      // this.slideMenuActive = "0"
     },
     slideSelect(key, keyPath) {
       this.slideMenuActive = key;
