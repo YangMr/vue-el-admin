@@ -9,6 +9,8 @@ Vue.config.productionTip = false;
 //引入界面权限控制文件
 import "./permissions"
 
+//引入按钮的权限控制文件
+import "./buttonPermissions"
 
 new Vue({
   router,

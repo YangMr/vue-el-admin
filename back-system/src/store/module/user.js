@@ -1,4 +1,4 @@
-import {setStorageToken,getStorageToken,getStorageUser,setStorageUser} from "../../utils/auth"
+import {setStorageToken,getStorageToken,getStorageUser,setStorageUser,removeStorageTokenAndUser} from "../../utils/auth"
 
 const state =  {
     token : getStorageToken(),
@@ -31,7 +31,13 @@ const actions = {
    }, 
    changeSetUser({commit},user){
     commit("setUser",user);
-  }, 
+   }, 
+   changeLogout({commit}){
+      commit("setToken",null);
+      commit("setUser",null);
+      commit("setNavBar",null)
+      sessionStorage.clear();
+   }    
 };
 
 export default {

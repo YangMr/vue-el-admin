@@ -1,6 +1,7 @@
 //引入axios
 import axios from "axios"
 
+import store from "../store"
 
 //创建axios的实例对象
 const request = axios.create({
@@ -10,6 +11,10 @@ const request = axios.create({
 
 // 添加请求拦截器
 request.interceptors.request.use(function (config) {
+    //获取token
+   const token =  store.getters.getToken ? store.getters.getToken : "";
+    //把token发送给后台
+    config.headers.token = token;
 
     // 在发送请求之前做些什么
     return config;

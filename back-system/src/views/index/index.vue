@@ -1,6 +1,6 @@
 <template>
  <div>
-     我是首页的内容
+    <el-button v-auth="'添加角色'">添加角色</el-button>
  </div>
 </template>
 

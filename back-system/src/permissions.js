@@ -32,6 +32,8 @@ import router from "./router"
 //引入vuex的实例对象
 import store from "./store"
 
+
+
 //使用路由守卫对路由进行拦截
 
 router.beforeEach( (to,from,next) => {
