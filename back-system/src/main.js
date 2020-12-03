@@ -6,6 +6,10 @@ import "./plugins/element.js";
 
 Vue.config.productionTip = false;
 
+//引入界面权限控制文件
+import "./permissions"
+
+
 new Vue({
   router,
   store,

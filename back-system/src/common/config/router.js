@@ -10,10 +10,10 @@ const routes = [
                 component: "index/index"
             },
             {
-                component: "image/index"
+                component: "image/index",
             },
             {
-                component: "shop/goods/list"
+                component: "shop/goods/list",
             },
         ]
     },

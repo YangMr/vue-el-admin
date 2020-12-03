@@ -36,6 +36,7 @@ export default {
         }
     };
   },
+
   methods : {
       //性能优化的点 : 可以做一个节流    自己去写一个节流方法    使用loadsh库提供的方法去实现节流
       loginSubmit(){
@@ -50,7 +51,7 @@ export default {
                    //将用户信息保存到vuex
                    this.$store.dispatch("changeSetUser",data)
                    //将菜单保存到vuex
-                  
+                   this.$store.dispatch("changeSetNavBar",data.tree)
                    //跳转到首页
                    this.$router.push({name : "index"})
                 }else{
