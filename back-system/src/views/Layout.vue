@@ -53,6 +53,10 @@
           </el-menu>
         </el-aside>
         <el-main>
+          <el-breadcrumb v-if="$route.path !== '/index'" class="border-bottom" separator-class="el-icon-arrow-right">
+            <el-breadcrumb-item :to="{ path: '/' }">后台首页</el-breadcrumb-item>
+            <el-breadcrumb-item>{{$route.meta.title}}</el-breadcrumb-item>
+          </el-breadcrumb>
           <router-view></router-view>
         </el-main>
       </el-container>
@@ -61,7 +65,7 @@
 </template>
 
 <script>
-import { clearStorage } from "../utils/storage";
+import { setStorage , getStorage } from "../utils/storage";
 import { userLogout } from "../api/user";
 import common from "../common/mixin/common";
 export default {
@@ -74,6 +78,7 @@ export default {
   },
   created() {
     this.navBar = this.$store.getters.getNavBar;
+    this.initNav();
   },
   computed: {
     slideMenus() {
@@ -88,17 +93,40 @@ export default {
       },
     },
   },
+  watch : {
+    "$route"(to,from){
+        const navActive = {
+          top : this.navBar.active,
+          left : this.slideMenuActive
+        }
+        setStorage("navActive",navActive)
+    }
+  },
   methods: {
+    initNav(){
+      //获取本地存储的navActive
+      const navActive = getStorage("navActive") ? getStorage("navActive") : {top : 0, left : 0};
+      this.navBar.active = navActive.top;
+      this.slideMenuActive = navActive.left;
+    },
     handleSelect(key, keyPath) {
-      this.navBar.active = key;
       if (key == "100-2") {
-        alert("123");
-        this.logout();
+       return this.logout();
       }
-      // this.slideMenuActive = "0"
+      
+      this.navBar.active = key; 
+      this.slideMenuActive = "0";
+      if(this.slideMenus.length > 0){
+         this.$router.push({
+           name : this.slideMenus[this.slideMenuActive].pathname
+         })
+      }
     },
     slideSelect(key, keyPath) {
       this.slideMenuActive = key;
+      this.$router.push({
+        name : this.slideMenus[this.slideMenuActive].pathname
+      })
     },
     async logout() {
       const result = await userLogout();
@@ -133,5 +161,10 @@ export default {
 }
 .el-menu {
   min-height: 100%;
+}
+.el-breadcrumb{
+  padding : 20px;
+  margin : -20px;
+  margin-bottom:30px;
 }
 </style>

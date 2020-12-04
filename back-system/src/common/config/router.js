@@ -9,11 +9,65 @@ const routes = [
             {
                 component: "index/index"
             },
-            {
+            {   
+                meta : {title : "相册管理"},
                 component: "image/index",
             },
             {
+                meta : {title : "商品列表"},
                 component: "shop/goods/list",
+            },
+            {
+                meta : {title : "分类管理"},
+                component : "shop/category/list"
+            },
+            {
+                meta : {title : "商品规格管理"},
+                component : "shop/sku/list"
+            },
+            {
+                meta : {title : "商品类型管理"},
+                component : "shop/type/list"
+            },
+            {
+                meta : {title : "商品评论管理"},
+                component : "shop/comment/list"
+            },
+            {
+                meta : {title : "订单管理"},
+                component : "order/order/list"
+            },
+            {
+                meta : {title : "发票管理"},
+                component : "order/invoice/list"
+            },
+            {
+                meta : {title : "售后服务"},
+                component : "order/after-sale/list"
+            },
+            {
+                meta : {title : "会员列表"},
+                component : "user/user-list/list"
+            },
+            {
+                meta : {title : "会员等级"},
+                component : "user/user-level/list"
+            },
+            {
+                meta : {title : "基础设置"},
+                component : "set/base"
+            },
+            {
+                meta : {title : "物流设置"},
+                component : "set/express"
+            },
+            {
+                meta : {title : "管理员设置"},
+                component : "set/manager"
+            },
+            {
+                meta : {title : "交易设置"},
+                component : "set/payment"
             },
         ]
     },
@@ -21,9 +75,13 @@ const routes = [
         component: "login/index"
     },
     {
+        component: "404"
+    },
+    {
         path: "*",
         redirect: "/index"
     }
+    
 ];
 
 //封装获取路由信息的方法

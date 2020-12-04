@@ -26,7 +26,7 @@ const actions = {
                arr.push({
                    name : item.name,
                    icon : item.icon,
-                   pathName : item.desc
+                   pathname : item.desc
                })
            })
             return {

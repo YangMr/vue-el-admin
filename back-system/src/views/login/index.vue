@@ -50,6 +50,8 @@ export default {
                    this.$store.dispatch("changeSetToken",data.token);
                    //将用户信息保存到vuex
                    this.$store.dispatch("changeSetUser",data)
+                   //将用户页面权限的规则保存到本地
+                    sessionStorage.setItem("rule",JSON.stringify(data.role.rules));
                    //将菜单保存到vuex
                    this.$store.dispatch("changeSetNavBar",data.tree)
                    //跳转到首页
